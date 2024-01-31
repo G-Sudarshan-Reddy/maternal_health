@@ -115,7 +115,7 @@ class DataTransformation:
                 obj=preprocessing_obj
 
             )
-            print(train_arr, test_arr)
+            # print(train_arr, test_arr)
 
             return (
                 train_arr,
