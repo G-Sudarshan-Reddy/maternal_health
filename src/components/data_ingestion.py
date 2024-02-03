@@ -4,6 +4,7 @@ import numpy as np
 
 from src.exception import CustomException
 from src.logger import logging
+from sklearn.preprocessing import LabelEncoder
 
 from src.components.data_transformation import DataTransformation, DataTransformationConfig
 from src.components.model_trainer import modeltrainer, modeltrainerconfig
@@ -31,6 +32,8 @@ class DataIngestion:
             os.makedirs(os.path.dirname(self.ingestion_config.train_path), exist_ok=True)
 
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
+
+            # df['RiskLevel'] = np.where(df['RiskLevel'] == 'high risk', 0, np.where(df['RiskLevel'] == 'mid risk', 1, 2))
 
             logging.info("Train test split initated")
             train_data, test_data = train_test_split(df, test_size=0.3, random_state=42)
